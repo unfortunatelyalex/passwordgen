@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>simple password generator.</title>
+    <style>
+        /* Base colors */
+        :root {
+          --primary-color: #E8EFE5;
+          --secondary-color: #DEE7E7;
+          --dark-color: #46494C;
+        }
+        
+        /* Page layout */
+        body {
+          font-family: Arial, sans-serif;
+          background-color: var(--primary-color);
+          color: var(--dark-color);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+        }
+        
+        .container {
+          background-color: var(--secondary-color);
+          border-radius: 8px;
+          padding: 24px;
+          text-align: center;
+          box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Form styling */
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        label {
+          font-size: 18px;
+          margin-bottom: 8px;
+        }
+        
+        input[type="number"] {
+          font-size: 16px;
+          padding: 8px;
+          border-radius: 4px;
+          border: 1px solid var(--dark-color);
+          margin-bottom: 16px;
+          width: 100%;
+          max-width: 200px;
+          box-sizing: border-box;
+        }
+        
+        input[type="checkbox"] {
+          margin-top: 16px;
+          margin-bottom: 8px;
+          margin-right: 8px;
+        }
+        
+        button[type="submit"] {
+          background-color: var(--dark-color);
+          color: var(--primary-color);
+          font-size: 18px;
+          padding: 12px 24px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          margin-top: 16px;
+          transition: background-color 0.2s ease;
+        }
+
+        
+        button[type="submit"]:hover {
+            background-color: #5D5E5F;
+        }
+        
+        button[type="copyButton"] {
+          background-color: var(--dark-color);
+          color: var(--primary-color);
+          font-size: 18px;
+          padding: 12px 24px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          margin-top: 16px;
+          transition: background-color 0.2s ease;
+        }
+
+        button[type="copyButton"]:hover {
+            background-color: #5D5E5F;
+        }
+
+        /* Password styling */
+        #password {
+          margin-top: 24px;
+          font-size: 24px;
+          word-break: break-all;
+          font-family: Consolas, monaco, monospace
+        }
+        
+        /* Message styling */
+        #message {
+          margin-top: 16px;
+          font-size: 18px;
+          color: var(--dark-color);
+          font-style: italic;
+        }
+      </style>
+  </head>
+  <body>
+    <h1>simple password generator.</h1>
+    <form method="POST" action="{{ url_for('generate_password') }}">
+        <label for="length">Password length (divisible by 5):</label>
+        <input type="number" id="length" name="length" min="10" max="50" step="5" value="15" required>
+        <label for="symbols">
+            <input type="checkbox" id="symbols" name="symbols" value="true"/>Include symbols?
+        </label>
+        <button type="submit">Generate Password</button>
+    </form>
+    <br>
+    <p id="password"></p>
+    <button id="copyButton" type="copyButton" style="display:none">Copy Password</button>
+    <script>
+      const copyButton = document.getElementById('copyButton');
+      const passwordField = document.getElementById('password');
+      const form = document.querySelector('form');
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        fetch('/generate-password', {
+          method: 'POST',
+          body: new FormData(form)
+        })
+          .then(response => response.text())
+          .then(password => {
+            passwordField.textContent = password;
+            copyButton.style.display = 'block';
+          })
+          .catch(console.error);
+      });
+      copyButton.addEventListener('click', event => {
+        const password = passwordField.textContent;
+        navigator.clipboard.writeText(password)
+          .then(() => {
+            alert(`Password '${password}' copied to clipboard`);
+          })
+          .catch(console.error);
+      });
+    </script>
+  </body>
+</html>
