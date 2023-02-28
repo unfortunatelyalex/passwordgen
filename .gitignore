@@ -10,7 +10,7 @@ prefixes.json
 *.xlsx
 utils.py
 /pluto slash/
-/templates/s
+/templates/
 *.png
 /cogs/
 

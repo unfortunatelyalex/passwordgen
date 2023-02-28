@@ -1,116 +1,84 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+    
   <head>
-    <title>simple password generator.</title>
-    <style>
-        /* Base colors */
-        :root {
-          --primary-color: #E8EFE5;
-          --secondary-color: #DEE7E7;
-          --dark-color: #46494C;
-        }
-        
-        /* Page layout */
-        body {
-          font-family: Arial, sans-serif;
-          background-color: var(--primary-color);
-          color: var(--dark-color);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          height: 100vh;
-          margin: 0;
-        }
-        
-        .container {
-          background-color: var(--secondary-color);
-          border-radius: 8px;
-          padding: 24px;
-          text-align: center;
-          box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Form styling */
-        form {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        label {
-          font-size: 18px;
-          margin-bottom: 8px;
-        }
-        
-        input[type="number"] {
-          font-size: 16px;
-          padding: 8px;
-          border-radius: 4px;
-          border: 1px solid var(--dark-color);
-          margin-bottom: 16px;
-          width: 100%;
-          max-width: 200px;
-          box-sizing: border-box;
-        }
-        
-        input[type="checkbox"] {
-          margin-top: 16px;
-          margin-bottom: 8px;
-          margin-right: 8px;
-        }
-        
-        button[type="submit"] {
-          background-color: var(--dark-color);
-          color: var(--primary-color);
-          font-size: 18px;
-          padding: 12px 24px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          margin-top: 16px;
-          transition: background-color 0.2s ease;
-        }
-
-        
-        button[type="submit"]:hover {
-            background-color: #5D5E5F;
-        }
-        
-        button[type="copyButton"] {
-          background-color: var(--dark-color);
-          color: var(--primary-color);
-          font-size: 18px;
-          padding: 12px 24px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          margin-top: 16px;
-          transition: background-color 0.2s ease;
-        }
-
-        button[type="copyButton"]:hover {
-            background-color: #5D5E5F;
-        }
-
-        /* Password styling */
-        #password {
-          margin-top: 24px;
-          font-size: 24px;
-          word-break: break-all;
-          font-family: Consolas, monaco, monospace
-        }
-        
-        /* Message styling */
-        #message {
-          margin-top: 16px;
-          font-size: 18px;
-          color: var(--dark-color);
-          font-style: italic;
-        }
-      </style>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="title" content="alex.">
+      <meta name="description" content="A simple password generator that's inspired by Apple's Safari password generator">
+      <!-- Define title -->
+      <title>password gen | project alex.</title>
+      <meta property="og:title" content="alex." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://pw.alexdot.me" />
+      <meta property="og:image" content="https://alexdot.me/img/pluto.png" />
+      <meta property="og:description" content="A simple password generator that's inspired by Apple's Safari password generator" />
+      <meta name="theme-color" content="#6045cc"/>
+      
+      <!-- Include this to make the og:image larger -->
+      <meta name="twitter:card" content="https://alexdot.me/img/pluto.png"/>
+  
+      <!-- Include favicon. Use, e.g., https://favicon.io/ -->
+      <link rel="apple-touch-icon" sizes="57x57" href="templates/img/fav/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="templates/img/fav/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="templates/img/fav/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="templates/img/fav/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="templates/img/fav/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="templates/img/fav/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="templates/img/fav/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="templates/img/fav/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="templates/img/fav/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="templates/img/fav/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="templates/img/fav/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="templates/img/fav/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="templates/img/fav//favicon-16x16.png">
+      <link rel="manifest" href="templates/img/fav/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="templates/img/fav/ms-icon-144x144.png">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  
+      <!-- Include style sheets -->
+      <link type="text/css" rel="stylesheet" href="/templates/main.css" charset="utf-8"/>
+  
+      <!-- Fonts from Google Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+      <!-- Load FontAwesome (for icons) -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous"
+      />
+  
+      <!-- Load Academicons (for more icons) -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css"
+        integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg=="
+        crossorigin="anonymous"
+      />
   </head>
   <body>
+    <nav class="burgerking navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <!-- <a class="navbar-brand" href="#"></a> -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <u><a class="nav-link active mx-3" href="http://alexdot.me/" aria-current="page">Home</a></u>
+              <u><a class="nav-link active mx-3" href="http://alexdot.me/projects" aria-current="page">Projects</a></u>
+              <u><a class="nav-link active mx-3" href="http://alexdot.me/resume" aria-current="page">Resume</a></u>
+            </div>
+          </div>
+        </div>
+    </nav>
     <h1>simple password generator.</h1>
     <form method="POST" action="{{ url_for('generate_password') }}">
         <label for="length">Password length (divisible by 5):</label>
@@ -149,5 +117,10 @@
           .catch(console.error);
       });
     </script>
+    <footer class="footer">
+        <p>
+            made with 💛 by alex.
+        </p>
+    </footer>
   </body>
 </html>
