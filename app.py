@@ -29,6 +29,6 @@ mode = 'prod'
 
 if __name__ == '__main__':
     if mode == 'dev':
-        app.run(host='127.0.0.1', port=5000, debug=True)
+        app.run(host='127.0.0.1', port=8000, debug=True)
     elif mode == "prod":
-        serve(app, host="0.0.0.0", port=8000)
+        serve(app, host="0.0.0.0", port=8000, url_scheme="https")
