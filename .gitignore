@@ -1,4 +1,7 @@
 # Manually added
+*.1
+*.2
+*.3
 *.bat
 prefixes.json
 *.bak
